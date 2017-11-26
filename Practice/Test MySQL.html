@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Test MySQL</title>
+</head>
+<body>
+
+<?php
+
+$user = 'Tina';
+$pass = 'test';
+$db = 'UserDatabase';
+
+$db = new mysqli ('', $user, $pass, $db)  or die("Unable to connect") ;
+echo ("Does this work");
+
+?>
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!-- https://www.dropbox.com/sh/tin8n3rr35y1xb6/AABgiiJedP6buJe5e3EydmUfa?dl=0&preview=index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AddPhysican</title>
+</head>
+<body>
+
+<td> ID:</td>
+<td><input type ="text" name = "id" id = "userID"/></td>
+
+<td> User Name:</td>
+<td><input type ="text" name = "userName" id = "userName"/></td>
+
+	<div class="mainDiv" align="center">
+		<h1 align="center">Adding Physican</h1>
+		
+		<textarea id = "mainText" placeholder="Enter text here..."></textarea>
+		<button id = "submitBtn"  onclick = "submitClick()">Submit</button>
+		
+		<input type = "button" value = "Add User" onclick = "addUser()"/>
+		<input type = "button" value = "Update" onclick = "updateUser()"/>
+		<input type = "button" value = "Remove" onclick = "removeUser()"/>
+		</div>
+
+<h3>User List</h3>
+
+<table id ="tbl_users_list">
+<tr>
+<td>#ID</td>
+<td>Name</td>
+</tr>
+</table>
+</body>
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+
+<script src="index.js"> </script>
+
+
+  
+</body>
+  
+</html>

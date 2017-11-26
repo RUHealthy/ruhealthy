@@ -1,0 +1,95 @@
+<!-- The code is based on the a class project at Rutgers University. 
+
+Project Title: RU Healthy?
+Class:  Software Engineering I   
+Course No: ECE567
+Professor: Ivan Marsic
+Semester: Fall 2017
+Website code developers: Tahiya Chowdhury and Tina Drew
+Group Participants: Aymen F Al-Saadi, Tahiya Chowdhury, Tina L Drew, 
+George Koubbe, Himabindu Paruchuri and Ramya Tadepalli  -->
+
+
+<!-- The purpose of this page is to allow stakeholders (patients, personal trainers, etc.) 
+to register for the application services. It will also allows user to be redirected to the
+login page if they are already registered -->
+
+<!DOCTYPE html>
+<html>
+<!--The section of the code outputs the RU logo at the top of the page.  -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Register</title>
+		<p align = "center"> 
+		<img src="RU Healthy Logo.jpg" alt="Smiley face" height = "100" width = "125">
+		<br><br>
+  </head>
+  
+  <body>
+	<table cellpadding="2" width="35%" bgcolor="99FFFF" align="center" cellspacing="2">
+		<tr>
+		  <td colspan=2>
+		  <center><font size=4><b>RU Healthy Registration</b></font></center>
+		  </td>
+		</tr>
+		
+		<tr><td> Username:</td><td><input type ="text" name = "userName" id = "userName" size="35"></td></tr>
+		<tr><td> Password:</td><td><input type ="text" name = "password" id = "password" size="35"></td></tr>
+		<tr><td> First Name:</td><td><input type ="text" name = "nameFirst" id = "nameFirst" size="35"></td></tr>
+		<tr><td> Last Name:</td><td><input type ="text" name = "nameLast" id = "nameLast" size="35"></td></tr>
+		<tr><td> Middle Name:</td><td><input type ="text" name = "nameMiddle" id = "nameMiddle" size="35"></td></tr>	
+		<tr><td> Office Address:</td><td><input type ="text" name = "officeAddress" id = "officeAddress" size="35"></td></tr>
+		<tr><td> City:</td><td><input type ="text" name = "officeCity" id = "officeCity" size="35"></td></tr>
+		<tr><td> State:</td><td><input type ="text" name = "officeState" id = "officeState" size="35"></td></tr>
+		<tr><td> Zipcode:</td><td><input type ="text" name = "officeZip" id = "officeZip" size="35"></td></tr>
+		<tr><td>Office Number</td><td><input type="number" name="numOffice" id="numOffice" size="35"></td></tr>
+		<tr><td>Mobile Number</td><td><input type="number" name="numMobile" id="numMobile" size="35"></td></tr>
+		<tr><td> Insurance:</td><td><input type ="text" name = "insurance" id = "insurance" size="35"></td></tr>
+		
+		</tr>
+		  <td>Sex</td>
+		  <td><select name="sex" id = "sex" >
+		  <option value="" selected>select..</option>
+		  <option value="Male">Male</option>
+		  <option value="Female">Female</option>
+		  </tr>
+		
+		
+		</tr>
+		  <td>User Type</td>
+		  <td><select name="User Type" id = "userType" >
+		  <option value="-1" selected>select..</option>
+		  <option value="Patient">Patient</option>
+		  <option value="Doctor">Doctor</option>
+		  <option value="Trainer">Trainer</option>
+		  <option value="Admin">Admin</option>
+		  <option value="Other">Other</option>
+		  </select></td>
+		</tr>
+		
+		<tr><td> Email:</td><td><input type ="text" name = "email" id = "email" size="35"></td></tr>
+	 
+		 	
+		<tr><td><input type="reset"></td>
+		  
+		<td colspan="2">
+		<input type = "button" value = "Register" onclick = "addUser()"/>
+		</tr>
+  </table>
+ <br>
+
+	<p align ="center"> Already Registered!! <a href="Login.html">Login Here</a></p>
+	
+
+</body>
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+
+<script src="FirebaseConfig.js"> </script>
+<script src="FirebaseOperationsUser.js"> </script>
+
+
+
+</body>
+</html>

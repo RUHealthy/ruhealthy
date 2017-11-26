@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AddPhysician2</title>
+</head>
+<body>
+
+		<div class="mainDiv" align="center">
+		<h1 align="center">Adding Physican</h1>
+		
+		<td> ID:<input type ="text" name = "id" id = "id"/></td><br><br>
+		<td> Test:<input type ="text" name = "test" id = "test"/></td><br><br>
+		<td> Username:<input type ="username" name = "username" id = "username"/></td><br><br>
+		<td> Address:<input type ="address" name = "addresss" id = "address"/></td><br><br>
+		
+		<textarea id = "mainText" placeholder="Enter text here..."></textarea>
+		<button id = "submitBtn"  onclick = "submitClick()">Submit</button><br>
+		
+		<input type = "button" value = "Add User" onclick = "addUser()"/>
+		<input type = "button" value = "Update" onclick = "updateUser()"/>
+		<input type = "button" value = "Remove" onclick = "removeUser()"/>
+		<input type = "button" value = "Keys" onclick = "length()"/><br>
+		<input type = "button" value = "Signout" onclick = "signOut()"/><br>
+		<input type = "button" value = "output" onclick = "output()"/><br>
+		<input type="submit" value="Submit Form" onclick = "output()"></td>
+		</div>	
+		</tr>
+
+
+</body>
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+
+<script src="FirebaseConfig.js"> </script>
+
+<script>
+
+//var mainText = document.getElementByID(mainText);
+//var submitBtn = document.getElementByID(submitBtn);
+//var name1 = document.getElementByID("userName").value;
+//var foo = document.getElementByID(id).value; 
+//var greet = "hi"; 
+
+function output() 
+{
+	window.alert("Testing");
+	var val = 1;
+	window.alert(val);
+
+	window.alert(username.value);
+
+};
+
+
+function submitClick() 
+{
+	var firebaseRef = firebase.database().ref(); 
+	firebaseRef.child("Help").set('Alice Drew');
+	//firebaseRef.parent("userId").set("Alice Drew");
+	firebaseRef.child("Name").set("Tina Drew");
+	firebaseRef.child("Name12").set("Tyshaun Drew");
+	window.alert("This is a test");
+};
+
+var userName = document.getElementByID(userName);
+function addUser() 
+{
+	var firebaseRef = firebase.database().ref(); 
+	firebaseRef.child(username.value + id.value).set({'name':username.value, "address":address.value, "number":id.value, "phone":7779417});
+	window.alert("User added");
+};
+
+var userName = document.getElementByID(userName).value;
+function updateUser(userName) 
+{
+	var firebaseRef = firebase.database().ref(); 
+	firebaseRef.child('Child').push(userName);
+	//firebaseRef.parent("userId").set("Alice Drew");
+	window.alert("User updated");
+};
+
+function findObjectById(root, id) {
+    if (root.children) {
+        for (var k in root.children) {
+            if (root.children[k].id == id) {
+                return root.children[k];
+            }
+            else if (root.children.length) {
+                return findObjectById(root.children[k], id);
+            }
+        }
+    }
+};
+
+var obj = 0; 
+function xxx (obj) {
+	window.alert("This is a test");
+	//var firebaseRef = firebase.database().ref();
+	return firebase.keys.length;
+    System.out.println(obj);
+    window.alert("15");
+};
+
+var obj = 0; 
+function length (urrent_value) {
+	window.alert("This is a test");
+
+	var upvotesRef = new Firebase
+	('https://ru-healthy-8dc96.firebaseio.com');
+	upvotesRef.transaction(function (current_value) {
+	  return (current_value || 0) + 1;
+	});
+	//System.out.println(obj);
+    window.alert("15");
+};
+
+firebase.auth().signOut().then(function() {
+		// Sign-out successful.
+	}).catch(function(error) {
+	  // An error happened.
+		window.alert("This is a test");
+	});
+
+</script>
+
+</body>
+</html>

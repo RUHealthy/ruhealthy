@@ -1,0 +1,9 @@
+
+$user = 'root';
+$pass = '';
+$db = 'users';
+
+$db = new mysqli ('localhost', $user, $pass, $db)  or die("Unable to connect") 
+
+
+?>

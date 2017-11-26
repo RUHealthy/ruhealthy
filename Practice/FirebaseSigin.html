@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FirebaseSigin</title>
+</head>
+<body>
+
+		<div class="mainDiv" align="center">
+		<h1 align="center">Adding Physican</h1>
+		
+		<td> email:<input type ="text" name = "email" id = "email"/></td><br><br>
+		<td> password:<input type ="text" name = "password" id = "password"/></td><br><br>
+		
+		
+		<textarea id = "mainText" placeholder="Enter text here..."></textarea>
+		<button id = "submitBtn"  onclick = "submitClick()">Submit</button><br>
+		
+		<input type = "button" value = "Add User" onclick = "addUser()"/>
+		<input type = "button" value = "Update" onclick = "updateUser()"/>
+		<input type = "button" value = "Remove" onclick = "removeUser()"/>
+		<input type = "button" value = "Keys" onclick = "length()"/>
+		<input type = "button" value = "Register" onclick = "regUser()"/>
+		</div>
+
+</body>
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+
+<script src="FirebaseConfig.js"> </script>
+
+<script>
+
+//var name = document.getElementByID(userName);
+
+function submitClick() 
+{
+	var firebaseRef = firebase.database().ref(); 
+	firebaseRef.child("Help").set('Alice Drew');
+	//firebaseRef.parent("userId").set("Alice Drew");
+	firebaseRef.child("Name").set("Tina Drew");
+	firebaseRef.child("Name12").set("Tyshaun Drew");
+	window.alert("This is a test");
+};
+
+var email = document.getElementByID(email);
+var password = document.getElementByID(password);
+function addUser() 
+{
+	window.alert("This is a test");
+	firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) 
+		{
+		window.alert("This is a test");
+		// Handle Errors here.
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+		  // ...
+		});
+	window.alert("This is a test");
+};
+
+function updateUser() 
+{	window.alert("This is a test");
+	firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+	    var user = firebase.auth().currentUser;
+	    logUser(user); // Optional
+	}, 
+	function(error) {
+	    // Handle Errors here.
+	    var errorCode = error.code;
+	    var errorMessage = error.message;
+	});
+
+	function logUser(user) {
+	    var ref = firebase.database().ref("users");
+	    var obj = {
+	        "user": user,
+	        ...
+	    };
+	    ref.push(obj); // or however you wish to update the node
+	};
+};
+
+function regUser(email,password,displayName){
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(value) {
+        console.log(value);
+        }).catch(function(error) {
+            console.log(error);
+        });
+}
+
+
+</script>
+</body>
+</html>
