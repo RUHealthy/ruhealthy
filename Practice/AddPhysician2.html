@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AddPhysician2</title>
+</head>
+<body>
+
+		<div class="mainDiv" align="center">
+		<h1 align="center">Adding Physican</h1>
+		
+		<td> ID:<input type ="text" name = "id" id = "id"/></td><br><br>
+		<td> Test:<input type ="text" name = "test" id = "test"/></td><br><br>
+	 	<td> Username:<input type ="username" name = "username" id = "username"/></td><br><br>
+		<td> Address:<input type ="address" name = "addresss" id = "address"/></td><br><br>
+		
+		<textarea id = "mainText" placeholder="Enter text here..."></textarea>
+		<button id = "submitBtn"  onclick = "submitClick()">Submit</button><br>
+		
+		<input type = "button" value = "Add User" onclick = "addUser()"/>
+		<input type = "button" value = "Update" onclick = "updateUser()"/>
+		<input type = "button" value = "Remove" onclick = "removeUser()"/>
+		<input type = "button" value = "Keys" onclick = "length()"/><br>
+		<input type = "button" value = "Signout" onclick = "signOut()"/><br>
+		<input type = "button" value = "output" onclick = "output()"/><br>
+		<input type="submit" value="Query Data" onclick = "queryData()"></td>
+		<input type="submit" value="Query Names" onclick = "queryNames()"></td>
+		<input type="submit" value="Submit Form" onclick = "submitClick()"></td>
+		<input type = "button" value = "myFunction" onclick = "myFunction()"/><br>
+		<input type="submit" value="Get ID" onclick = "getID()"></td>
+		<input type="submit" value="test" onclick = "test15()"></td>
+		<input type="submit" value="Wait" onclick = "waitForID1()"></td>
+		<input type="submit" value="Add Person" onclick = "addPerson()"></td>
+		</div>	
+		</tr>
+
+
+</body>
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+
+<script src="FirebaseConfig.js"> </script>
+
+<script>
+
+
+
+function output1() 
+{
+
+	window.alert("done"); 
+};
+
+
+function output() 
+{
+var test = "ys"; 
+	if (test === "yes")
+		{
+		window.alert("This is a test"); 
+		}
+	else 
+		{
+		window.alert("NO DRILLL"); 
+		}
+
+};
+
+
+
+function what()
+{
+	var test; 
+	return test; 
+}; 
+
+ 
+function why(callback)
+{
+	setTimeout(function() {var num = 15; }, 2000);
+	window.alert("waiting"); 
+	//callback (num); 
+	//return test; 
+};
+
+
+function test12 ()
+{
+window.alert(num); 
+};
+
+function greeting(num) 
+{
+	  alert('Hello ' + num);
+};
+
+function test ()
+{
+	function dieToss() 
+	{
+	var rand =   Math.floor(Math.random() * 6) + 1
+	window.alert(rand); 
+	return rand;
+	}
+	console.log('1');
+	
+	var promise = new Promise(function(resolve, reject) {
+	  var n = dieToss();
+	  if (n === 6) {
+	    fulfill(n);
+	  } else {
+	    reject(n);
+	  }
+	  console.log('2');
+	});
+
+	promise.then(function(toss) {
+	  window.alert('Yay, threw a ' + toss + '.');  
+	}, function(toss) {
+	  window.alert('Oh, noes, threw a ' + toss + '.');  
+	});
+
+}; 
+
+var nextID =0; 
+function getID() 
+{
+	var ref = firebase.database().ref('Patient').orderByKey(); 
+	
+ 	ref.on("value", function(snapshot) 
+ 			
+			{	window.alert("nextID"); 
+				var data = []; 
+				snapshot.forEach(function(child)
+		 			{
+						var key = child.key; 
+						var childData = child.val(); 
+						data.push(key);  
+					}); 	
+				
+				nextID = Math.max.apply(Math, data)+1; 
+				window.alert("test stuff");
+				window.alert(nextID); 
+				});
+	return nextID;
+};
+
+function test15()
+{
+	var promiseIDs = new Promise(function(resolve, reject) 
+		{
+			  var n = getID2();
+			  if (n > 0) 
+			  {	  window.alert('Data retrieved');
+				  resolve(n);
+			    } 
+			  else 
+			  {
+				  window.alert('NO DATA');
+				  reject(n);
+			  }
+		});
+		
+	function getID2() 
+	{
+		var ref = firebase.database().ref('Patient').orderByKey(); 
+		
+	 	ref.on("value", function(snapshot) 
+	 			
+				{	window.alert("nextID"); 
+					var data = []; 
+					snapshot.forEach(function(child)
+			 			{
+							var key = child.key; 
+							var childData = child.val(); 
+							data.push(key);  
+						}); 	
+					
+					nextID = Math.max.apply(Math, data)+1; 
+					window.alert("test stuff");
+					window.alert(nextID); 
+					});
+		return nextID;
+	};
+
+	promiseIDs.then(function(get){window.alert('function complete');}); 
+}; 
+
+
+function getID1(callback) 
+{
+	var ref = firebase.database().ref('Patient').orderByKey(); 
+	
+ 	ref.on("value", function(snapshot) 
+
+			{	window.alert('really');
+				var data = []; 
+				snapshot.forEach(function(child)
+		 			{
+						var key = child.key; 
+						var childData = child.val(); 
+						data.push(key);  
+					}); 	
+				//document.write(data);
+				nextID = Math.max.apply(Math, data)+1; 
+				window.alert(nextID);
+				return nextID; 
+			});
+	callback(nextID);  	
+ 	//setTimeout(function() {}, 3000); 
+	//return nextID; 
+ 
+};
+
+
+function queryData() 
+{
+	var ref = firebase.database().ref('Patient').orderByKey(); 
+	
+	getID(); 
+	
+	ref.on("value", function(snapshot) 
+
+			{	window.alert('really');
+				var data = []; 
+				snapshot.forEach(function(child)
+		 			{
+						var key = child.key; 
+						var childData = child.val(); 
+						data.push(key);  
+					}); 	
+				document.write(data);
+				var nextID = Math.max.apply(Math, data)+1; 
+				window.alert(nextID);
+			});
+
+};
+
+function submitClick() 
+{
+	var firebaseRef = firebase.database().ref(); 
+	//firebaseRef.child("Help").push('This is the data')//.child("test again");
+	//firebaseRef.parent("userId").set("Alice Drew");
+	//firebaseRef.child("Name").set("Tina D");
+	//firebaseRef.push("N").set("Tyshaun Drew");
+	firebaseRef.child("SDad").child("Sex").push('This is the data');
+	window.alert("This is a test");
+};
+
+//var userName = document.getElementByID(userName);
+
+
+function waitForID()
+{
+	window.alert("okay"); 
+	var i = 0;
+	
+	(function theLoop (i) {
+		  setTimeout(function ()
+			{
+		    alert("Cheese!" + i);
+	
+		    
+		    if (--i && nextID < 1) 
+		    {         			 // If i > 0, keep going
+		      theLoop(i);       // Call the loop again, and pass it the current value of i
+		    }
+			
+		    else
+		    {
+		    addPerson();	
+		    }
+			
+		}, 1000);
+		
+	})(10);
+};
+
+function addPerson() 
+
+{
+	var firebaseRef = firebase.database().ref(); 
+	firebaseRef.child("Physician").child(nextID).set(
+			
+		{"name":"Mike Brown", 
+		"address":"address.value", 
+		"number":"id.value", 
+		"phone":"7779417"});
+	
+	window.alert("User added");
+};
+
+function addUser1() 
+
+{
+	
+	getID(); 
+	
+	waitForID(); 
+	
+	window.alert("Test This");
+ 
+	
+};
+
+function addUser() 
+
+{
+	getID(nextID).then(function(userResponse){
+	window.alert('testing');});
+
+	
+};
+
+
+
+var userName = document.getElementByID(userName).value;
+function updateUser(userName) 
+{
+	var firebaseRef = firebase.database().ref(); 
+	firebaseRef.child('Child').push(userName);
+	//firebaseRef.parent("userId").set("Alice Drew");
+	window.alert("User updated");
+};
+
+function findObjectById(root, id) {
+    if (root.children) {
+        for (var k in root.children) {
+            if (root.children[k].id == id) {
+                return root.children[k];
+            }
+            else if (root.children.length) {
+                return findObjectById(root.children[k], id);
+            }
+        }
+    }
+};
+
+var obj = 0; 
+function xxx (obj) {
+	window.alert("This is a test");
+	//var firebaseRef = firebase.database().ref();
+	return firebase.keys.length;
+    System.out.println(obj);
+    window.alert("15");
+};
+
+var obj = 0; 
+function length (urrent_value) {
+	window.alert("This is a test");
+
+	var upvotesRef = new Firebase
+	('https://ru-healthy-8dc96.firebaseio.com');
+	upvotesRef.transaction(function (current_value) {
+	  return (current_value || 0) + 1;
+	});
+	//System.out.println(obj);
+    window.alert("15");
+};
+
+firebase.auth().signOut().then(function() {
+		// Sign-out successful.
+	}).catch(function(error) {
+	  // An error happened.
+		window.alert("This is a test");
+	});
+
+
+
+</script>
+
+</body>
+</html>

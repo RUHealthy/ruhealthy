@@ -52,7 +52,7 @@ function delete_user()
 	reload_page();
 }
 
-fuction reload_page() 
+function reload_page() 
 {
 	window.locaition.reload();
 }
