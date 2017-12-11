@@ -1,0 +1,93 @@
+<!-- The code is based on the a class project at Rutgers University. 
+
+Project Title: RU Healthy?
+Class:  Software Engineering I   
+Course No: ECE567
+Professor: Ivan Marsic
+Semester: Fall 2017
+Website code developers: Tahiya Chowdhury and Tina Drew
+Group Participants: Aymen F Al-Saadi, Tahiya Chowdhury, Tina L Drew, 
+George Koubbe, Himabindu Paruchuri and Ramya Tadepalli  -->
+
+<!-- The purpose of this page is to allow users to login to their account. -->
+<!-- This code has been modified from: -->
+<!-- https://www.codeproject.com/Articles/19532/Dynamic-Table-using-html-ad-javascript -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Get Patient List</title>
+    </head>
+<br>
+<p align = "center"> 
+<img src="RU Healthy Logo.jpg" alt="Smiley face" height = "200" width = "225">
+<br>
+<form action="sample.html">
+
+<center><p>
+<input type="button" value="Get Patient List" onclick="getPatientList();" /><br><br>
+</tr> <tr><td><b>Patient ID: </b> </td><td><input type = 'text' name = 'inputData' id = 'inputData' align = 'center'/></td></tr>
+<td><input type="button" value="Get Patient data" onclick="getPatientInfo(inputData.value);" /></td>
+</p></center>
+
+<center><table border="1" id="tblSample">
+<tr><th colspan="3">Patient List</th></tr>
+
+<tr><td><input type="text" name="txtRow1" id="txtRow1" size="30" value = 'ID' /></td>
+<td><input type="text" name="txtRow2" id="txtRow2" size="30" value = 'Name' /></td>
+
+</tr>
+</table></center>
+</form>
+</html>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+
+<script src="FirebaseConfig.js"> </script>
+
+<script src="LibraryCommon.js"> </script>
+<script src="PageMaker.js"> </script>
+<script src="PatientSearcher.js"> </script>
+
+
+
+<script>
+function getPatientList()
+{
+	//window.alert('This is a test');
+	patientSearch('123149', updateDisplayTable); 	
+}; 
+
+
+function updateDisplayTable(array)
+{
+
+	for (i =1; i < array.length; i++)
+	{
+	  var tbl = document.getElementById('tblSample');
+	  var lastRow = tbl.rows.length;
+	  // if there's no header row in the table, then iteration = lastRow + 1
+	  var iteration = lastRow;
+	  var row = tbl.insertRow(lastRow);
+	  
+	  // left cell
+	  //var left = array[i].split(',')[0];
+	  var cellLeft = row.insertCell(0);
+	  var textNode = document.createTextNode(array[i][1]);
+	  cellLeft.appendChild(textNode);
+	  
+	  // right cell
+	  //var right = array[i].split(',')[1];
+	  var cellRight = row.insertCell(0);
+	  var textNode2 = document.createTextNode(array[i][0]);
+	  cellRight.appendChild(textNode2);	 
+	}
+	  window.alert(array); 
+}; 
+
+
+</script>
+</body>
+</html>
