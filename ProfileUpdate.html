@@ -18,13 +18,10 @@ login page if they are already registered -->
 <html>
 <!--The section of the code outputs the RU logo at the top of the page.  -->
     <head>
-        <meta http-equiv="Content-Ty pe" content="text/html; charset=UTF-8">
-        <title>ProfileUpdate</title>
-		<p align = "center"> 
-		<img src="RU Healthy Logo.jpg" alt="Smiley face" height = "100" width = "125">
-		<br><br>
-  </head>
+<p style="border:3px; border-style:solid; border-color: #f44250;  
+Background-color: #f44250; padding: 1em;"><b>Profile</b></p>
   
+  </head>
   <body>
 	<table cellpadding="2" width="35%" align="center" cellspacing="2">
 		<tr>
@@ -42,7 +39,8 @@ login page if they are already registered -->
 		<tr><td>Office Number</td><td><input type="number" name="numOffice" id="numOffice" size="35"></td></tr>
 		<tr><td>Mobile Number</td><td><input type="number" name="numMobile" id="numMobile" size="35"></td></tr>
 		<tr><td> Insurance:</td><td><input type ="text" name = "insurance" id = "insurance" size="35"></td></tr>
-		
+		<tr><td> User ID:</td><td><input type ="text" name = "uid" id = "uid" size="35"></td></tr>
+				
 		</tr>
 		  <td>Gender</td>
 		  <td><select name="gender" id = "gender" >
@@ -51,12 +49,11 @@ login page if they are already registered -->
 		  <option value="Female">Female</option>
 		  </tr>
 		
-
-		
 		<tr><td><input type="reset"></td>
 		  
 		<td colspan="2">
-		<input type = "button" value = "Register" onclick = "addPerson()"/>
+		<input type = "button" value = "Update Profile" onclick = "addPerson()"/>
+		<input type = "button" value = "Update GetID" onclick = "updateInfo()"/>
 		</tr>
   </table>
  <br>
@@ -73,5 +70,39 @@ login page if they are already registered -->
 <script src="FirebaseUpdateProfile.js"> </script>
 <script src="FirebaseOperationsUser.js"> </script>
 
+<script src="LibraryCommon.js"> </script>
+<script src="PageMaker.js"> </script>
+<script src="FirebaseAuthentication1.js"> </script>
+<script src="FirebaseAddUser.js"> </script>
+
+<script>
+function updateInfo()
+{
+	window.alert('is this running');
+	
+	setTimeout(function()
+	{	window.alert('here');
+		GetLoginStatus(updatePanel);
+		window.alert('there');}, 1000); 
+
+}
+
+function updatePanel(info)
+{
+  	setTimeout(function()
+  	{window.alert('is this running 2');
+  	document.getElementById("uid").value = info;},
+  	2000); 
+}
+
+function createUserAcct(email, password, nameFirst,nameLast)
+{	
+	
+}
+
+
+
+
+</script>
 </body>
 </html>

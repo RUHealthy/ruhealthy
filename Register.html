@@ -16,7 +16,9 @@ George Koubbe, Himabindu Paruchuri and Ramya Tadepalli  -->
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
-    </head>
+   </head>
+<p style="border:3px; border-style:solid; border-color: #f44250;  
+Background-color: #f44250; padding: 1em;"><font color='white'><b>Registration</b></font></p>
         
      <br>
 <p align = "center"> 
@@ -34,30 +36,29 @@ George Koubbe, Himabindu Paruchuri and Ramya Tadepalli  -->
             </tr> <tr><td>Last Name:</td><td><input type ="text" name = "nameLast" id = "nameLast"/></td> 
             </tr> <tr><td>Email:</td><td><input type ="text" name = "email" id = "email"/></td> 
             </tr><tr><td> Password:</td><td><input type ="text" name = "password" id = "password"/></td>
+            </tr><tr><td> User ID:</td><td><input type ="text" name = "uid" id = "uid"/></td>
                        		
 		</tr>
 		  <td>User Type</td>
 		  <td><select name="User Type" id = "userType" >
-		  <option value="Patient">Patient</option>
 		  <option value="Physician">Physician</option>
+		  <option value="Patient">Patient</option>
 		  <option value="Trainer">Trainer</option>
 		  <option value="Admin">Admin</option>
 		  <option value="Other">Other</option>
 		  </select></td>
 		</tr>
                          
-      
-             </tr> <tr><td><input type="reset" value="Reset" /></td>
-             <td><input type = "button" value = "Register" onclick = "createUserAcct(email.value, password.value, nameFirst.value, nameLast.value)"/></td>
-             </tr> <tr>
-            
-            <td colspan="2">Already Registered!! 
-            <a href="Login.html">Login Here</a></td></tr>
-             </tbody>
-            </table></form>
+         </tr> <tr><td><input type="reset" value="Reset" /></td>
+         <td><input type = "button" value = "Register" 
+         onclick = "createUserAcct(email.value, password.value, nameFirst.value, nameLast.value)"/></td>
+          </tr> <tr><td colspan="2">Not Registered Yet!! 
+          <a href="Login.html">Login Here</a></td></tr>
+          </tbody>
+          </table></form>
+      </tr> <tr><td><input type="button" value="Test" onclick = 'test()' /></td>
     </body> 
 </html>
-
 
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 
@@ -65,18 +66,42 @@ George Koubbe, Himabindu Paruchuri and Ramya Tadepalli  -->
 
 <script src="LibraryCommon.js"> </script>
 <script src="PageMaker.js"> </script>
-<script src="FirebaseAuthentication.js"> </script>
+<script src="FirebaseAuthentication1.js"> </script>
 <script src="FirebaseAddUser.js"> </script>
 
 <script>
-
 function createUserAcct(email, password, nameFirst,nameLast)
-{
-	register(email, password,  //the register function executes and then "call back" the login function
-	login(email, password, 	  //the login function executes and then "calls back" or executes the GetLoginStatus function
-	GetLoginStatus(nameFirst, nameLast, addUser))); //the //the login function executes and then "calls back" or executes the GetLoginStatus function
+{	
+	//window.alert('is this running');
+	register(email, password); 
+	setTimeout(function(){login(email, password);}, 500); 
+	setTimeout(function(){GetLoginStatus(updatePanel);}, 1000); 	
+}
 
-};
+function updatePanel(info)
+{
+  	setTimeout(function(){
+  	document.getElementById("uid").value = info;}, 2000); 
+	
+  	//window.alert('see');
+	setTimeout(function(){test();}, 3000);
+}
+
+function test()
+{
+
+	var first = document.getElementById("nameFirst").value; 
+	var last = document.getElementById("nameLast").value; 
+	var email = document.getElementById("email").value; 
+	var type = document.getElementById("userType").value; 
+	var ID = document.getElementById("uid").value; 
+	
+  	setTimeout(function(){
+  		addUser(email, ID, first, last, type); 
+  		//window.alert('this')
+  		;}, 04000); 
+ }
+
 
 </script>
 </body>
