@@ -54,7 +54,7 @@ function getPatientInfo(patientID)
 
 //modified from https://stackoverflow.com/questions/45835615/firebase-get-immediate-parent-of-a-child-with-specific-value 
 
-5
+
 function printTable (Array, header)
 {
 		
