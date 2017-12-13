@@ -53,7 +53,7 @@ li a:hover {
 </ul>
 
 <br><p align = "center"> 
-<img STYLE="position:absolute; TOP:60px; LEFT:370px;" 
+<img STYLE="position:absolute; TOP:60px; LEFT: 240px;" 
  src="Profile.gif" alt="Smiley face" height = 180 width = "250">
 <body bgcolor = "#C8C4C4">
 <br><br><br><br><br><br><br><br><br>
@@ -62,17 +62,19 @@ li a:hover {
 <form action="sample.html">
 <center><p>
 <input type="button" value="Get Patient List" onclick="getPatientList();" /><br><br>
-</tr> <tr><td><b>Patient ID:   </b> </td><td><input type = 'text' name = 'inputData' id = 'inputData' align = 'center'/></td></tr>
-<td><input type="button" value="Get Patient data" onclick="verifyPhyID(inputData.value, 'IpLI9SntEMeM03xJdkjMsEJlOFF2');" /></td>
+</tr> <tr><td><b>Patient ID:   </b> </td><td><input type = 'text' 
+name = 'inputData' id = 'inputData' align = 'center'/></td></tr>
+<td><input type="button" value="Get Patient data" 
+onclick="verifyPhyID(inputData.value, 'IpLI9SntEMeM03xJdkjMsEJlOFF2');" /></td>
 
-<div><b>Activity Type: <b><tr> <td><select  style="width: 150px; name="Activity type" id = "activityType" >
+<div><b>Activity Type: <b><tr> <td><select  style="width: 150px; name="activityType" id = "activityType" >
 		  <option value="Step Count">Step Count</option>
 		  <option value="Heart Rate">Heart Rate</option>
 		  <option value="Recovery Rate">Recovery Rate</option>
 		  </select></td>
 
 
-<td><input type="button" value="Get Patient Activity" onclick="verifyPhyID(inputData.value, 'IpLI9SntEMeM03xJdkjMsEJlOFF2');" /></td>
+<td><input type="button" value="Get Patient Activity" onclick="getPatientActivity();" /></td>
 </p></center>
 
 		 
@@ -120,7 +122,7 @@ function updatePanel(email, id)
 function getPatientActivity()
 {
 	//window.alert('This is a test');
-	getPatientActivityInfo('7Owbl8fsHBMVeiKvUJxsilntE9C3', 'Recovery Time', updateDisplayTable); 
+	getPatientActivityInfo('7Owbl8fsHBMVeiKvUJxsilntE9C3', 'Step Count', updateDisplayTable); 
 		
 }; 
 

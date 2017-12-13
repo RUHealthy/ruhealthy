@@ -13,16 +13,50 @@ George Koubbe, Himabindu Paruchuri and Ramya Tadepalli  -->
 to register for the application services. It will also allows user to be redirected to the
 login page if they are already registered -->
 
+
 <!DOCTYPE html>
 <html>
-<!--The section of the code outputs the RU logo at the top of the page.  -->
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Profile Update</title>
-	<p style="border:3px; border-style:solid; border-color: #f44250;  
-	Background-color: #f44250; padding: 1em;"><b>Profile</b></p>
-  
-  </head>
+<head>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #D03F2B;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+</style>
+</head>
+<body>
+   <title>Patient Information</title>
+<ul>
+  <li><a href="Home.html" >Home</a></li>
+  <li><a href="ProfileUpdate.html">Profile</a></li>
+  <li><a href="Patient Information.html">Patient Info</a></li>
+  <li><a href="Index.html">Logout</a></li>
+</ul>
+
+<br><p align = "center"> 
+<img STYLE="position:absolute; TOP:60px; LEFT: 265px;" 
+ src="Profile.gif" alt="Smiley face" height = 180 width = "250">
+<body bgcolor = "#C8C4C4">
+<br><br><br><br><br><br><br><br><br>
   <body onload="updateInfo();">
 	<table cellpadding="2" width="35%" align="center" cellspacing="2">
 		<tr>
