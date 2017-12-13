@@ -10,6 +10,6 @@ function removeDuplicates(Array)
 		  return arr.indexOf(elem) == pos;
 		});
 
-	window.alert(uniqueArray); 
+	//window.alert(uniqueArray); 
 }; 
 

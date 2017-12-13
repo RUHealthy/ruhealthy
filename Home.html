@@ -16,26 +16,50 @@ to enter the site via login or registration -->
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Home</title>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #D03F2B;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+</style>
 </head>
-<p style="border:3px; border-style:solid; border-color: #f44250;  
-Background-color: #f44250; padding: 1em;"><font color='white'><b>RU HEALTHY?</b></p>
-<body>
+<body bgcolor = "#C8C4C4">
+   <title>Homepage</title>
+<ul>
+  <li><a href="Home.html" >Home</a></li>
+  <li><a href="ProfileUpdate.html">Profile</a></li>
+  <li><a href="Patient Information.html">Patient Info</a></li>
+  <li><a href="Index.html">Logout</a></li>
+</ul>
 
 
  <br>
-<p align = "center"> <img src="Doc.jpg" alt="Smiley face" height = "200" width = "250"><br>
-<p align = "center"> <img src="HeartNStet.jpg" alt="Smiley face" height = "200" width = "250"><br>
-<p align = "center"> <img src="Logout.jpg" alt="Smiley face" height = "200" width = "250"><br>
+<br><center><b>My Profile</b></center><br>
+<p align = "center"> <img src="Doc.jpg" alt="Smiley face" height = "200" width = "250" href = "ProfileUpdate.html"><br>
+<br><center><b>Patient Information</b></center><br>
+<p align = "center"> <img src="HeartNStet.jpg" alt="Smiley face" height = "200" width = "250"><a href = "PatientInformation.html>"<br>
+<br><center><b>Logout</b></center><br>
+<p align = "center"> <img src="Logout.jpg" alt="Smiley face" height = "200" width = "250" href = "index.html"><br>
 
-
-<p align ="center"> <a href="Login.html">
-  <input type="submit" value="Login">
- <tr>
-<div>
-<p align ="center"> <a href="Register.html">
-  <input type="submit" value="Register">
 </tr>
 
 

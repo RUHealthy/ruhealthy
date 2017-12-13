@@ -13,28 +13,69 @@ George Koubbe, Himabindu Paruchuri and Ramya Tadepalli  -->
 <!-- This code has been modified from: -->
 <!-- https://www.codeproject.com/Articles/19532/Dynamic-Table-using-html-ad-javascript -->
 
+
 <!DOCTYPE html>
 <html>
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Patient Information</title>
-    </head>
+<head>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #D03F2B;
+}
 
-<p style="border:3px; border-style:solid; border-color: #f44250;  
-Background-color: #f44250; padding: 1em;"><b>Patient Information</b></p>
+li {
+    float: left;
+}
 
-<br>
-<p align = "center"> 
-<img src="RU Healthy Logo.jpg" alt="Smiley face" height = "200" width = "225">
-<br>
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+</style>
+</head>
+<body>
+   <title>Patient Information</title>
+<ul>
+  <li><a href="Home.html" >Home</a></li>
+  <li><a href="ProfileUpdate.html">Profile</a></li>
+  <li><a href="Patient Information.html">Patient Info</a></li>
+  <li><a href="Index.html">Logout</a></li>
+</ul>
+
+<br><p align = "center"> 
+<img STYLE="position:absolute; TOP:60px; LEFT:370px;" 
+ src="Profile.gif" alt="Smiley face" height = 180 width = "250">
+<body bgcolor = "#C8C4C4">
+<br><br><br><br><br><br><br><br><br>
+
+<!-- <td><b>My ID: <input type="text" id = "uid" name = 'uid' value = '' /></b></td> -->
 <form action="sample.html">
-
 <center><p>
 <input type="button" value="Get Patient List" onclick="getPatientList();" /><br><br>
-</tr> <tr><td><b>Patient ID: </b> </td><td><input type = 'text' name = 'inputData' id = 'inputData' align = 'center'/></td></tr>
-<td><input type="button" value="Get Patient data" onclick="getPatientInfo(inputData.value);" /></td>
+</tr> <tr><td><b>Patient ID:   </b> </td><td><input type = 'text' name = 'inputData' id = 'inputData' align = 'center'/></td></tr>
+<td><input type="button" value="Get Patient data" onclick="verifyPhyID(inputData.value, 'IpLI9SntEMeM03xJdkjMsEJlOFF2');" /></td>
+
+<div><b>Activity Type: <b><tr> <td><select  style="width: 150px; name="Activity type" id = "activityType" >
+		  <option value="Step Count">Step Count</option>
+		  <option value="Heart Rate">Heart Rate</option>
+		  <option value="Recovery Rate">Recovery Rate</option>
+		  </select></td>
+
+
+<td><input type="button" value="Get Patient Activity" onclick="verifyPhyID(inputData.value, 'IpLI9SntEMeM03xJdkjMsEJlOFF2');" /></td>
 </p></center>
 
+		 
 <center><table border="1" id="tblSample">
 <tr><th colspan="3">Patient List</th></tr>
 
@@ -44,6 +85,7 @@ Background-color: #f44250; padding: 1em;"><b>Patient Information</b></p>
 </tr>
 </table></center>
 </form>
+</body>
 </html>
 
 
@@ -54,15 +96,66 @@ Background-color: #f44250; padding: 1em;"><b>Patient Information</b></p>
 <script src="LibraryCommon.js"> </script>
 <script src="PageMaker.js"> </script>
 <script src="PatientSearcher.js"> </script>
-
+<script src="PatientActivity.js"> </script>
 
 
 <script>
+
+function updateInfo()
+{
+	//window.alert('is this running');
+	
+	setTimeout(function(){GetLoginStatus(updatePanel);}, 1500);
+}
+
+
+function updatePanel(email, id)
+{
+  	setTimeout(function(){
+  	document.getElementById("uid").value = id;}, 2000); 
+	
+}
+
+
+function getPatientActivity()
+{
+	//window.alert('This is a test');
+	getPatientActivityInfo('7Owbl8fsHBMVeiKvUJxsilntE9C3', 'Recovery Time', updateDisplayTable); 
+		
+}; 
+
 function getPatientList()
 {
 	//window.alert('This is a test');
-	patientSearch('123149', updateDisplayTable); 	
+	patientSearch('IpLI9SntEMeM03xJdkjMsEJlOFF2', updateDisplayTable); 	
 }; 
+
+function verifyPhyID(patientID, phyID)
+{
+	//Find all patients with the specified patient ID		
+		var patPhyID = ' ';	
+	
+		var ref = firebase.database().ref("Patient/"+patientID+"/physician id");
+		ref.once("value", function(snapshot)  
+			 {	//window.alert('hi');	
+			   	patPhyID = snapshot.val();
+			    //window.alert(patPhyID); //Inserts the patient information into the array
+			   //patientList.push([data.key, nameFirst +' '+ nameLast]); //Inserts the patient information into the array
+			   //window.alert(patientList);
+			})
+			.then(function()
+				{//window.alert('hi3');
+					if (phyID == patPhyID)
+					{getPatientInfo(patientID);}
+					else
+					{window.alert('This patient has not listed you as a physician');}
+				});
+		//return nameFirst, nameLast, nameMiddle, city, gender, insurance, mobileNum, officeNum, state, zip, email;
+		//Remove duplicates from the array.
+		//.then(function(){callback(patientList);});
+		
+}; 
+
 
 
 function updateDisplayTable(array)
