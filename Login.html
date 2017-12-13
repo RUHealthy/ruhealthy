@@ -65,14 +65,15 @@ li a:hover {
  
       
              </tr> <tr><td><input type="reset" value="Reset" /></td>
-             <td><input type = "button" value = "Sign-in" onclick = "SignIn(email.value, password.value)"/></td>
+             <td><input type = "button" value = "Sign-in" 
+             onclick = "SignIn(email.value, password.value)"/></td>
              </tr> <tr>
             
             <td colspan="2">Not Registered Yet!! 
             <a href="Register.html">Register Here</a></td></tr>
              </tbody>
     	    </table></form>
-           <center><td><input type = "button" value = "Logout" onclick = "Logout()"/></td></center>
+           <csenter><td><input type = "button" value = "Logout" onclick = "Logout()"/></td></center>
     
     </body> 
 </html>
@@ -91,8 +92,10 @@ li a:hover {
 
 function SignIn (email, password)
 {	window.alert('logging in');
-	login(email, password, 	  //the login function executes and then "calls back" or executes the GetLoginStatus function
-	GetLoginStatus(empty)); //the //the login function executes and then "calls back" or executes the GetLoginStatus function
+	
+	login(email, password); 	  //the login function executes and then "calls back" or executes the GetLoginStatus function
+	
+	setTimeout(function(){GetLoginStatus(empty);}, 3000); //the //the login function executes and then "calls back" or executes the GetLoginStatus function
 	
 };
 
