@@ -48,6 +48,53 @@ function getPatientInfo(patientID)
 };
 
 
+
+//modified from https://stackoverflow.com/questions/45835615/firebase-get-immediate-parent-of-a-child-with-specific-value 
+function  getPhyData(uid)
+{	window.alert('hi');	
+	//Find all patients with the specified patient ID		
+		//patientList = [,]; 
+		//patientList.push(['ID','NAME']); 
+		var nameFirst;
+		var nameLast; 
+		var nameMiddle; 
+		var city;
+		var gender; 
+		var insurance; 
+		var mobileNum; 
+		var officeNum;
+		var state;
+		var zip; 
+		var email; 
+		var ref = firebase.database().ref("Physician");
+		ref.orderByChild('id').equalTo(uid).once("value", function(snapshot) 
+		{	  
+		   snapshot.forEach(function(data) 
+			 {
+			   nameFirst = data.child("first name").val(); //Stores the patient name to the variable nameFirst.
+			   nameLast = data.child("last name").val(); //Stores the patient name to the variable nameFirst.
+			   nameMiddle data.child("middle name").val();
+			 	city = data.child("city").val();
+				gender = data.child("gender").val(); 
+				insurance = data.child("insurance").val(); 
+				mobileNum = data.child("mobile number").val();
+				officeNum = data.child("office number").val();
+				state = data.child("state").val();
+				zip = data.child("zipcode").val();
+				email = data.child("email").val();
+			   
+			   window.alert(nameFirst + nameLast); //Inserts the patient information into the array
+			   //patientList.push([data.key, nameFirst +' '+ nameLast]); //Inserts the patient information into the array
+			   //window.alert(patientList);
+			 }); 
+		})
+		.then(function(){callback nameFirst, nameLast, nameMiddle, city, gender, insurance, mobileNum, officeNum, state, zip; email;});
+	
+		
+}; 
+
+
+
 function printTable (Array, header)
 {
 		

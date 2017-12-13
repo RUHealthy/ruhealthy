@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Test</title>
+
+<head></head>
+<body class="page_bg">
+Hello, today is <?php echo date('l, F jS, Y'); ?>.
+
+		
+		<tr><td><input type="reset"></td>
+		  
+		<td colspan="2">
+		<input type = "button" value = "Update Profile" onclick = 
+		"updateProf(uid.value)"
+			/>
+		<input type = "button" value = "Update GetID" onclick = "getDataSum()"/>
+		</tr>
+
+</body>
+</html>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+
+<script src="FirebaseConfig.js"> </script>
+
+<script>
+
+
+
+//modified from https://stackoverflow.com/questions/45835615/firebase-get-immediate-parent-of-a-child-with-specific-value 
+function getDataSum()
+{	window.alert('hi');	
+	//Find all patients with the specified patient ID		
+		//patientList = [,]; 
+		//patientList.push(['ID','NAME']); 
+		var nameFirst;
+		var nameLast; 
+		var nameMiddle; 
+		var city;
+		var gender; 
+		var insurance; 
+		var mobileNum; 
+		var officeNum;
+		var state;
+		var zip; 
+		var email; 
+		var ref = firebase.database().ref("Physician");
+		ref.orderByChild('id').equalTo('smgJeeqXPsTEkPgjfOCsxklfuVq2').once("value", function(snapshot) 
+		{	  
+		   snapshot.forEach(function(data) 
+			 {
+			   nameFirst = data.child("first name").val(); //Stores the patient name to the variable nameFirst.
+			   nameLast = data.child("last name").val(); //Stores the patient name to the variable nameFirst.
+			   nameMiddle = data.child("middle name").val();
+			 	city = data.child("city").val();
+				gender = data.child("gender").val(); 
+				insurance = data.child("insurance").val(); 
+				mobileNum = data.child("mobile number").val();
+				officeNum = data.child("office number").val();
+				state = data.child("state").val();
+				zip = data.child("zipcode").val();
+				email = data.child("email").val();
+			   
+			   window.alert(nameFirst + nameLast); //Inserts the patient information into the array
+			   //patientList.push([data.key, nameFirst +' '+ nameLast]); //Inserts the patient information into the array
+			   //window.alert(patientList);
+			 }); 
+		}).then(function()
+				{
+			
+				});
+		//return nameFirst, nameLast, nameMiddle, city, gender, insurance, mobileNum, officeNum, state, zip, email;
+		//Remove duplicates from the array.
+		//.then(function(){callback(patientList);});
+		
+}; 
+
+function okay(nameFirst, nameLast, nameMiddle, city, gender, insurance, mobileNum, officeNum, state, zip, email)
+{
+}
+
+//modified from https://stackoverflow.com/questions/45835615/firebase-get-immediate-parent-of-a-child-with-specific-value 
+
+function findPatient()
+{	window.alert('hi');	
+	//Find all patients with the specified patient ID		
+		var nameFirst;
+		var nameLast; 
+		var nameMiddle;
+		var email;
+		var id;
+		var insurance;
+		var officeAddress;
+		var ref = firebase.database().ref("Physician").child('smgJeeqXPsTEkPgjfOCsxklfuVq2');
+		ref.orderByKey().once("value", function(snapshot) 
+		{	  
+		   snapshot.forEach(function(data) 
+			 {
+			   nameFirst = data.child("first name").val(); //Stores the patient name to the variable nameFirst.
+			   nameLast = data.child("last name").val(); //Stores the patient name to the variable nameFirst.
+			   window.alert(nameFirst + nameLast); //Inserts the patient information into the array
+			   //window.alert(patientList);
+			 }); 
+		});
+		//.then(function(){removeDuplicates(patientList);});//Remove duplicates from the array.
+	
+}; 
+
+
+//modified from https://stackoverflow.com/questions/45835615/firebase-get-immediate-parent-of-a-child-with-specific-value 
+function patientSearch(phyID)
+{	//window.alert('hi');	
+	//Find all patients with the specified patient ID		
+		patientList = [,]; 
+		//patientList.push(['ID','NAME']); 
+		var nameFirst;
+		var nameLast; 
+		var ref = firebase.database().ref("Patient");
+		ref.orderByKey().equalTo(phyID).once("value", function(snapshot) 
+		{	  
+		   snapshot.forEach(function(data) 
+			 {
+			   nameFirst = data.child("first name").val(); //Stores the patient name to the variable nameFirst.
+			   nameLast = data.child("last name").val(); //Stores the patient name to the variable nameFirst.
+			   patientList.push([data.key, nameFirst +' '+ nameLast]); //Inserts the patient information into the array
+			   //window.alert(patientList);
+			 }); 
+		});
+	
+}; 
+
+
+
+</script>
+
+</body>
+</html>

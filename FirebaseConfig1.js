@@ -1,16 +1,17 @@
 
 
+
+ src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"
+
 //-------------------------------------------------------------------------------
 //The code below was provided by firebase and is used to initialize the firebase features
-
-src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDbFHaYv1U-w6DphuNtiL_YyxvP3SLweME",
-    authDomain: "ruhealthy-69349.firebaseapp.com",
-    databaseURL: "https://ruhealthy-69349.firebaseio.com",
-    projectId: "ruhealthy-69349",
-    storageBucket: "ruhealthy-69349.appspot.com",
-    messagingSenderId: "387397422876"
+	var config = {
+    apiKey: "AIzaSyBnbRQIOOIOtjOx1Hzht4n4od58yv2AJIs",
+    authDomain: "ru-healthy-8dc96.firebaseapp.com",
+    databaseURL: "https://ru-healthy-8dc96.firebaseio.com",
+    projectId: "ru-healthy-8dc96",
+    storageBucket: "ru-healthy-8dc96.appspot.com",
+    messagingSenderId: "293634509469"
   };
-  firebase.initializeApp(config);
+
+ firebase.initializeApp(config);

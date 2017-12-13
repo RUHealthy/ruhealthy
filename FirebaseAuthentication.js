@@ -2,29 +2,34 @@
 //The code modified for the code available here:
 //https://firebase.google.com/docs/auth/web/password-auth
 
-function register (email, password, callback)
+function register (email, password)
 {
 	firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
 	  // Handle Errors here.
 	  //window.alert( 'Account created'); 
 	  var errorCode = error.code;
 	  var errorMessage = error.message;
-	  return callback (email, password);
+	  return email, password;
 	  // ...
 	 });
  
 };
 
 function login (email, password)
-{	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) 
-	{
-	 // Handle Errors here.
-	  var errorCode = error.code;
-	  var errorMessage = error.message;
-	  return callback(email, password);
-	  // ...
-	});
-
+{	firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+	  .then(function() {
+		    // Existing and future Auth states are now persisted in the current
+		    // session only. Closing the window would clear any existing state even
+		    // if a user forgets to sign out.
+		    // ...
+		    // New sign-in will be persisted with session persistence.
+		    return firebase.auth().signInWithEmailAndPassword(email, password);
+		  })
+		  .catch(function(error) {
+		    // Handle Errors here.
+		    var errorCode = error.code;
+		    var errorMessage = error.message;
+		  });
 //window.alert( 'Logining in'); 
 };
 
@@ -45,22 +50,22 @@ function GetLoginStatus(callback)
 		    var isAnonymous = user.isAnonymous;
 		    uid = user.uid;
 		    var providerData = user.providerData;
-		    userID = uid; 
 		    // ...
 		  status = "User is signed in with user ID " + uid; 
 		   } 
 		  else 
 		  {
 			  status = "User is not signed in"; 
+			  uid = "000"
 			  // User is signed out.
 			  // ...
 		  }
-	    setTimeout(function()
-	    	{
-	    	window.alert(status);
-	    		}, 1000);
+	    setTimeout(function(){
+	    	//window.alert(status);
+	    	}, 1000);
+	    callback(email, uid);
 	});
-	return (email,uid, callback());
+
 };
 
 function logout ()
