@@ -42,8 +42,16 @@ function getPatientInfo(patientID)
 		      var key = childSnapshot.key;
 		      var childData = childSnapshot.val();
 		      	      
-		      patientData.push ([key, childData]); 
-		      
+		      if (typeof childData === 'object')
+		      {
+		    	  
+		      }
+	
+		      else
+		      {		   
+		    	  patientData.push ([key, childData]);
+		      }
+	      
 	       
 	    	});    
 		//window.alert(patientData); 
@@ -59,7 +67,7 @@ function printTable (Array, header)
 {
 		
 		var htmlOut ="<p align = 'center'>" +
-		"<img src='RU Healthy Logo.jpg' alt='Smiley face' height = '100' width = '125'>"
+		"<img src='profile1.jpg' alt='Smiley face' height = '100' width = '125'>"
 			+ "<table align = 'center' border='1|1'>";
 		htmlOut += "<tr> <th colspan='2'>" +header + "</th>";
 		for(var i in Array)
@@ -73,7 +81,7 @@ function printTable (Array, header)
 		}
 
 		htmlOut += "</table>";
-		htmlOut += "<a href='Patient Information.html' align = 'center'>Return to Patient Information</a></td>"
+		htmlOut += "<br><a href='Patient Information.html' align = 'center'>Return to Patient Information</a></td>"
 		
 		document.write(htmlOut);
 		return htmlOut;
