@@ -1,0 +1,99 @@
+<!-- The code is based on the a class project at Rutgers University. 
+
+Project Title: RU Healthy?
+Class:  Software Engineering I   
+Course No: ECE567
+Professor: Ivan Marsic
+Semester: Fall 2017
+Website code developers: Tina Drew
+Written by Tina Drew
+Debugged by Tina Drew
+Tested by Tina Drew
+
+Group Participants: Aymen F Al-Saadi, Tahiya Chowdhury, Tina L Drew, 
+George Koubbe, Himabindu Paruchuri and Ramya Tadepalli 
+
+This page serves as user portal and allows the user to navigate to the rest of the
+RU Healthy webpages-->
+
+<!-- The code below creates a menu navigation bar at the top of the page and was modified from.
+https://www.w3schools.com/css/tryit.asp?filename=trycss_float5-->
+
+<!DOCTYPE html>
+<html>
+<head>
+ <br>
+
+ 
+
+<br><p align = "center"> 
+<body bgcolor = "#C8C4C4">
+<title>Testing</title>
+      
+       <form method="post" action="login.jsp">
+       <table border="1" width="25%" cellpadding="3"  align="center">
+       <thead> <tr> <th colspan="2">RU Healthy Login</th>
+            
+            </tr> </thead> <tbody> 
+            </tr> <tr><td>Email:</td><td><input type ="text" name = "email" id = "email"/></td> 
+            </tr><tr><td> Password:</td><td><input type ="password" name = "password" id = "password"/></td>
+ 
+      
+             </tr> <tr><td><input type="reset" value="Reset" /></td>
+             <td><input type = "button" value = "Sign-in" 
+             onclick = "SignIn(email.value, password.value)"/></td>
+             </tr> <tr>
+            
+            <td colspan="2">Not Registered Yet!! 
+            <a href="Register.html">Register Here</a></td></tr>
+             </tbody>
+    	    </table></form>
+    	    <br>
+           <center><td><input type = "button" value = "Exit"   height = 180 width = "250"
+            onclick = "Logout()"/></td></center>
+    
+    		<br><center><td><input type = "button" value = "Test"   height = 180 width = "250"
+            onclick = "getStat()"/></td></center>
+            <br><center><td><input type = "button" value = "Test2"   height = 180 width = "250"
+            onclick = "other()"/></td></center>
+            
+    </body> 
+</html>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+
+<script src="FirebaseConfig.js"> </script>
+
+<script src="LibraryCommon.js"> </script>
+<script src="PageMaker.js"> </script>
+<script src="FirebaseAuthentication.js"> </script>
+<script src="FirebaseAddUser.js"> </script>
+
+<script>
+
+
+//This section of the code is used to attain the user id and set it as global variable 
+var ID = '000'; 
+window.onload = getStat;
+function getStat()
+{	
+	window.alert('is this running');
+	setTimeout(function(){GetLoginStatus(setID);}, 1000);
+}
+
+
+function setID(email, id)
+{
+	setTimeout(function(){
+		ID = id; 
+		window.alert (ID);
+		}, 1000);
+	
+}
+//-------------------------------------------------------------------------------------------
+
+</script>
+</body>
+</html>
+

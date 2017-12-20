@@ -13,7 +13,7 @@ Tested by Tina Drew
 Group Participants: Aymen F Al-Saadi, Tahiya Chowdhury, Tina L Drew, 
 George Koubbe, Himabindu Paruchuri and Ramya Tadepalli 
 
-The purpose of this page is to allow users log into the RU Healthy system-->
+The purpose of this page is to allow users register for the RU Healthy system-->
 
 <!-- The code below creates a menu navigation bar at the top of the page and was modified from.
 https://www.w3schools.com/css/tryit.asp?filename=trycss_float5-->
@@ -51,64 +51,60 @@ li a:hover {
 <ul>
   <li><a href="index.html">RU Healthy?</a></li>
 </ul>
-
 <!-- End of modified code -->
 
 <br><p align = "center"> 
-<img center" 
+<img align = "center" 
  src="profile1.jpg" alt="Smiley face" height = 180 width = "250">
 <body bgcolor = "#C8C4C4">
-<br><br>       
+<br><br>
+      <body>
        <form method="post" action="login.jsp">
        <table border="1" width="25%" cellpadding="3"  align="center">
-       <thead> <tr> <th colspan="2">RU Healthy Login</th>
+       <thead> <tr> <th colspan="2">RU Healthy Registration</th>
             
             </tr> </thead> <tbody> 
             </tr> <tr><td>Email:</td><td><input type ="text" name = "email" id = "email"/></td> 
             </tr><tr><td> Password:</td><td><input type ="password" name = "password" id = "password"/></td>
- 
-      
-             </tr> <tr><td><input type="reset" value="Reset" /></td>
-             <td><input type = "button" value = "Sign-in" 
-             onclick = "SignIn(email.value, password.value)"/></td>
-             </tr> <tr>
-            
-            <td colspan="2">Not Registered Yet!! 
-            <a href="Register.html">Register Here</a></td></tr>
-             </tbody>
-    	    </table></form>
-    	    <br>
-           <center><td><input type = "button" value = "Exit"   height = 180 width = "250"
-            onclick = "Logout()"/></td></center>
+       		 </tr> <tr><td><input type="reset" value="Reset" /></td>
+         <td><input type = "button" value = "Sign-in" 
+         onclick = "SignIn(email.value, password.value)"/></td>
+          </tr> <tr><td colspan="2">Not Registered Yet!! 
+          <a href="Login.html">Login Here</a></td></tr>
+          </tbody>
+          </table></form>
+    	    <br><center><td><input type = "button" value = "Exit"   height = 180 width = "250"
+            onclick = "logout()"/></td></center>
     
     </body> 
 </html>
 
-
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script src="FirebaseConfig.js"> </script> <!-- Used to configure communication with the firebase database -->
+<script src="LibraryCommon.js"> </script><!-- Contains functions for common actions -->
+<script src="FirebaseAuthentication.js"> </script><!-- Contains functions for firebase user athentication--> 
+<script src="FirebaseAddUser.js"> </script> <!-- Contains function to add users to the firebase database -->
 
-<script src="FirebaseConfig.js"> </script>
-
-<script src="LibraryCommon.js"> </script>
-<script src="PageMaker.js"> </script>
-<script src="FirebaseAuthentication.js"> </script>
-<script src="FirebaseAddUser.js"> </script>
 
 <script>
 
-function SignIn (email, password)
-{	window.alert('logging in');
-	
-	login(email, password); 	  //the login function executes and then "calls back" or executes the GetLoginStatus function
-	
-	setTimeout(function(){GetLoginStatus(empty);}, 3000); //the //the login function executes and then "calls back" or executes the GetLoginStatus function
-	
+// This calls the login function s
+function SignIn(email, password)
+{	//window.alert('logging in');
+
+	login(email, password);
+		
 };
 
+//Prints and alert message that the user has sucessfully logged in
 function empty(email, password)
-{
-setTimeout{function(){window.location.href = "Home.html";}, 3000} 
-}; 
+{	
+	
+	window.alert('You are successfully logged in with email:' +email);
+
+};
+
+
 
 </script>
 </body>

@@ -32,25 +32,31 @@ function register (email, password)
  
 };
 
-function login (email, password)
-{	firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-	  .then(function() {
-		    // Existing and future Auth states are now persisted in the current
-		    // session only. Closing the window would clear any existing state even
-		    // if a user forgets to sign out.
-		    // ...
-		    // New sign-in will be persisted with session persistence.
-		    return firebase.auth().signInWithEmailAndPassword(email, password);
-		  })
-		  .catch(function(error) {
-		    // Handle Errors here.
-		    var errorCode = error.code;
-		    var errorMessage = error.message;
-		  });
-//window.alert( 'Logining in'); 
-};
+//This funciton is used to log a using into the firebase system
 
-var userID; 
+function login(email, password)
+{	var status = 1;
+	//window.alert( 'Login Eval');
+	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+		  // Handle Errors here.
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+		  // ...
+		  //Prints out an message if an error occurs
+		  window.alert( errorCode +errorMessage);
+		  //Sets status to 0 to indicate an error. 
+		  status = 0;
+		}).then(function(){
+		if (status ==1){window.location.href = "Home.html";};
+			//If there are no errors.  This window redirects to the homepage
+		});
+		
+	//window.alert( 'Login Eval2');
+	return status;
+}
+
+
+//This function returns login status information 
 var status;
 function GetLoginStatus(callback)
 {	var uid;
@@ -78,18 +84,21 @@ function GetLoginStatus(callback)
 			  // ...
 		  }
 	    setTimeout(function(){
-	    	//window.alert(status);
+	    //	window.alert(status);
 	    	}, 1000);
 	    callback(email, uid);
 	});
 
 };
 
+//This function logs the user out of the system and redirects to the index.html page
 function logout ()
 {
 	firebase.auth().signOut().then(function() {
 		  window.alert('You are now signed out');
 		}, function(error) {
 		  window.alert('Sign Out Error', error);
-		});
+		}).then(function(success){
+			//
+			window.location.href = "index.html";});
 };

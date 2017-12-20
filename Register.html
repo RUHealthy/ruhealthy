@@ -97,9 +97,7 @@ li a:hover {
 </html>
 
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-
 <script src="FirebaseConfig.js"> </script> <!-- Used to configure communication with the firebase database -->
-
 <script src="LibraryCommon.js"> </script><!-- Contains functions for common actions -->
 <script src="FirebaseAuthentication.js"> </script><!-- Contains functions for firebase user athentication--> 
 <script src="FirebaseAddUser.js"> </script> <!-- Contains function to add users to the firebase database -->
@@ -108,11 +106,17 @@ li a:hover {
 <script>
 //This function is used to create a user account.  
 function createUserAcct(email, password)
-{	
+{	var status = 1; 
+	
+	
+	
+	
+	
 	//window.alert('is this running');
 	register(email, password); 
-	setTimeout(function(){login(email, password);}, 500); 
-	setTimeout(function(){GetLoginStatus(updatePanel);}, 1500); 	
+	setTimeout(function(){login(email, password);}, 1000); 
+	setTimeout(function(){GetLoginStatus(updatePanel);}, 2000); 	
+
 }
 //This function updates the front panel with the user ID information. 
 function updatePanel(email, id)

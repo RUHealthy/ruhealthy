@@ -89,12 +89,9 @@ li a:hover {
 		  
 		<td colspan="2">
 		<input type = "button" value = "Update Profile" onclick = "updateProf(uid.value) "/>
-		<!-- <input type = "button" value = "Update GetID" onclick = "updateInfo()"/> -->
 		</tr>  
   </table>
  <br>
-
-	<!--<center><input type = "button" value = "Populate" onclick = "getDataSum('smgJeeqXPsTEkPgjfOCsxklfuVq2')"/></center> -->
 
 </body>
 </html>
@@ -105,52 +102,57 @@ li a:hover {
 <script src="FirebaseUpdateProfile.js"> </script>
 <script src="FirebaseOperationsUser.js"> </script>
 
-<script src="LibraryCommon.js"> </script>
-<script src="PageMaker.js"> </script>
-<script src="FirebaseAuthentication.js"> </script>
-<script src="FirebaseAddUser.js"> </script>
-<script src="PatientSearcher.js"> </script>
+<script src="FirebaseConfig.js"> </script> <!-- Used to configure communication with the firebase database -->
+<script src="LibraryCommon.js"> </script> <!-- Includes common function such as removing duplicates for arrays -->
+<script src="PatientSearcher.js"> </script> <!-- Contains functions for patient list searches -->
+<script src="FirebaseAuthentication.js"> </script><!-- Contains functions for firebase authentication-->
+<script src="FirebaseAddUser.js"> </script><!-- Contains functions to add users to firebase database-->
+
 
 <script>
+
+//This function updates the physician id value when the screen loads
+window.onload = updateInfo;
 function updateInfo()
 {
 	//window.alert('is this running');
 	
-	setTimeout(function(){GetLoginStatus(updatePanel);}, 1500);
+	setTimeout(function(){GetLoginStatus(updatePanel);}, 500);
 }
 
-
+//This function updates the front uid and email front panel values
 function updatePanel(email, id)
 {
   	setTimeout(function(){
-  	document.getElementById("uid").value = id;
- 	document.getElementById("email").value = email;}}, 2000); 
+  	//document.getElementById("uid").value = id;
+ 	//document.getElementById("email").value = email;
+ 	}, 1500); 
 	
+  	setTimeout(function(){
+  		getDataSum(id);}, 1800); 
+  	
 }
-
-
 
 
 
 //modified from https://stackoverflow.com/questions/45835615/firebase-get-immediate-parent-of-a-child-with-specific-value 
+//This function updates the front panel values
 function getDataSum(ID)
-{	//window.alert('hi');	
-	//Find all patients with the specified patient ID		
-		//patientList = [,]; 
-		//patientList.push(['ID','NAME']); 
-		var nameFirst;
-		var nameLast; 
-		var nameMiddle; 
-		var city;
+{		//Initializes variables
+		var nameFirst = '';
+		var nameLast = ''; 
+		var nameMiddle = ''; 
+		var city = '';
 		var gender; 
-		var insurance; 
+		var insurance = ''; 
 		var mobileNum; 
 		var officeNum;
-		var address;
-		var state;
-		var zip; 
-		var email; 
+		var address = '';
+		var state = '';
+		var zip = ''; 
+		var email = ''; 
 		var ref = firebase.database().ref("Physician");
+		//Pulls data from firebase database for the user
 		ref.orderByChild('id').equalTo(ID).once("value", function(snapshot) 
 		{	  
 		   snapshot.forEach(function(data) 
@@ -167,14 +169,10 @@ function getDataSum(ID)
 				state = data.child("state").val();
 				zip = data.child("zipcode").val();
 				email = data.child("email").val();
-			   
-			  // window.alert(nameFirst + nameLast); //Inserts the patient information into the array
-			   //patientList.push([data.key, nameFirst +' '+ nameLast]); //Inserts the patient information into the array
-			   //window.alert(patientList);
 			 }); 
 		}).then(function()
 		{
-		
+			//Updates front panel display
 		  	document.getElementById("nameFirst").value = nameFirst;
 		  	document.getElementById("nameLast").value = nameLast;
 		  	document.getElementById("nameMiddle").value = nameMiddle;
@@ -190,10 +188,7 @@ function getDataSum(ID)
 			document.getElementById("uid").value = ID;
 
 		});
-			//return nameFirst, nameLast, nameMiddle, city, gender, insurance, mobileNum, officeNum, state, zip, email;
-		//Remove duplicates from the array.
-		//.then(function(){callback(patientList);});
-		
+
 }; 
 
 
