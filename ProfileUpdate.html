@@ -111,7 +111,6 @@ li a:hover {
 <script src="FirebaseAddUser.js"> </script>
 <script src="PatientSearcher.js"> </script>
 
-
 <script>
 function updateInfo()
 {
@@ -124,7 +123,8 @@ function updateInfo()
 function updatePanel(email, id)
 {
   	setTimeout(function(){
-  	document.getElementById("uid").value = id;}, 2000); 
+  	document.getElementById("uid").value = id;
+ 	document.getElementById("email").value = email;}}, 2000); 
 	
 }
 

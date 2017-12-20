@@ -98,14 +98,15 @@ li a:hover {
 
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 
-<script src="FirebaseConfig.js"> </script>
+<script src="FirebaseConfig.js"> </script> <!-- Used to configure communication with the firebase database -->
 
-<script src="LibraryCommon.js"> </script>
-<script src="PageMaker.js"> </script>
-<script src="FirebaseAuthentication.js"> </script>
-<script src="FirebaseAddUser.js"> </script>
+<script src="LibraryCommon.js"> </script><!-- Contains functions for common actions -->
+<script src="FirebaseAuthentication.js"> </script><!-- Contains functions for firebase user athentication--> 
+<script src="FirebaseAddUser.js"> </script> <!-- Contains function to add users to the firebase database -->
+
 
 <script>
+//This function is used to create a user account.  
 function createUserAcct(email, password)
 {	
 	//window.alert('is this running');
@@ -113,6 +114,7 @@ function createUserAcct(email, password)
 	setTimeout(function(){login(email, password);}, 500); 
 	setTimeout(function(){GetLoginStatus(updatePanel);}, 1500); 	
 }
+//This function updates the front panel with the user ID information. 
 function updatePanel(email, id)
 {
   	setTimeout(function(){
@@ -124,3 +126,4 @@ function updatePanel(email, id)
 </script>
 </body>
 </html>
+
