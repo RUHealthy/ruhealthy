@@ -59,6 +59,7 @@ li a:hover {
 <img align = "center" 
 src="profile1.jpg" alt="Smiley face" height = 180 width = "250">
 <body bgcolor = "#C8C4C4">
+<body onload="logout()">
 
 <!-- Creates button that redirects to the Login.html page -->
 <br><br>
@@ -73,6 +74,15 @@ src="profile1.jpg" alt="Smiley face" height = 180 width = "250">
   <input type="submit" value="Register" style="height:50px;width:250px">
 </tr>
 
+
+</body>
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script src="FirebaseConfig.js"> </script> <!-- Used to configure communication with the firebase database -->
+<script src="LibraryCommon.js"> </script><!-- Contains functions for common actions -->
+<script src="FirebaseAuthentication.js"> </script><!-- Contains functions for firebase user athentication--> 
+<script src="FirebaseAddUser.js"> </script> <!-- Contains function to add users to the firebase database -->
 
 </body>
 </html>

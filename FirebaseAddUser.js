@@ -14,7 +14,7 @@ Tested by Tina Drew
 Group Participants: Aymen F Al-Saadi, Tahiya Chowdhury, Tina L Drew, 
 George Koubbe, Himabindu Paruchuri and Ramya Tadepalli 
 
-This Javascript file is used to add an new user to the firebase database.  */
+This Javascript file is used to add a new user to the firebase database.  */
 
 //The function below adds users to the database. 
 function addUser(email, userID) 

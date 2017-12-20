@@ -49,10 +49,7 @@ li a:hover {
 <body>
    <title>Register</title>
 <ul>
-  <li><a href="Home.html" >Home</a></li>
-  <li><a href="ProfileUpdate.html">Profile</a></li>
-  <li><a href="Patient Information.html">Patient Info</a></li>
-  <li><a href="index.html">Logout</a></li>
+  <li><a href="index.html">RU HEALTHY?</a></li>
 </ul>
 <!-- End of modified code -->
 
@@ -93,6 +90,9 @@ li a:hover {
           <a href="Login.html">Login Here</a></td></tr>
           </tbody>
           </table></form>
+      	    <br><center><td><a href = "index.html"><input type = "button" value = "Exit"   height = 180 width = "250"
+            onclick = "logout()"/></td></center>
+  
     </body> 
 </html>
 
@@ -106,18 +106,14 @@ li a:hover {
 <script>
 //This function is used to create a user account.  
 function createUserAcct(email, password)
-{	var status = 1; 
-	
-	
-	
-	
-	
+{		
 	//window.alert('is this running');
-	register(email, password); 
-	setTimeout(function(){login(email, password);}, 1000); 
-	setTimeout(function(){GetLoginStatus(updatePanel);}, 2000); 	
-
+	status = register(email, password); 
+	setTimeout(function(){login(email, password,'reg');}, 1000); 
+    setTimeout(function(){GetLoginStatus(updatePanel);}, 2000); 	
+    
 }
+
 //This function updates the front panel with the user ID information. 
 function updatePanel(email, id)
 {
