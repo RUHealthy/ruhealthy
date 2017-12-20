@@ -6,14 +6,17 @@ Course No: ECE567
 Professor: Ivan Marsic
 Semester: Fall 2017
 Website code developers: Tina Drew
+Written by Tina Drew
+Debugged by Tina Drew
+Tested by Tina Drew
+
 Group Participants: Aymen F Al-Saadi, Tahiya Chowdhury, Tina L Drew, 
-George Koubbe, Himabindu Paruchuri and Ramya Tadepalli  -->
+George Koubbe, Himabindu Paruchuri and Ramya Tadepalli 
 
-<!-- The purpose of this page is to allow users to login to their account. -->
-<!-- This code has been modified from: -->
-<!-- https://www.codeproject.com/Articles/19532/Dynamic-Table-using-html-ad-javascript -->
+The purpose of this page is to allow users to access patient information data->
 
-
+<!-- The code below creates a menu navigation bar at the top of the page and was modified from.
+https://www.w3schools.com/css/tryit.asp?filename=trycss_float5-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,8 +52,10 @@ li a:hover {
   <li><a href="Home.html" >Home</a></li>
   <li><a href="ProfileUpdate.html">Profile</a></li>
   <li><a href="Patient Information.html">Patient Info</a></li>
-  <li><a href="index.html">Logout</a></li>
+  <li><a href="Index.html">Logout</a></li>
 </ul>
+<!-- End of modified code -->
+
 
 <br><p align = "center"> 
 <img align = "center" 
@@ -59,19 +64,21 @@ li a:hover {
 <br><br>
 
 <!-- <td><b>My ID: <input type="text" id = "uid" name = 'uid' value = '' /></b></td> -->
+
+<!-- Creates form for user to front panel.  -->
 <form action="sample.html">
 <center><p>
 <input type="button" value="Get Patient List" onclick="getPatientList();" /> <br><br>
 </tr> <tr><td><b>Patient ID: </b> </td><td><input type = 'text' style= width:150px 
-name = 'inputData' id = 'inputData' align = 'center'/></td></tr>
+name = 'patientID' id = 'patientID' align = 'center'/></td></tr>
 
 <td><input type="button" value="Get Patient data" style= width:150px  
-onclick="verifyPhyID(inputData.value, 'IpLI9SntEMeM03xJdkjMsEJlOFF2');" /></td>
+onclick="getPaientData();" /></td>
 
 <div><b>Activity Type: <b><tr> <td><select  style="width: 150px; name="activityType" id = "activityType" >
 		  <option value="Step Count">Step Count</option>
 		  <option value="Heart Rate">Heart Rate</option>
-		  <option value="Recovery Rate">Recovery Rate</option>
+		  <option value="Recovery Time">Recovery Time</option>
 		  </select></td>
 
 
@@ -91,72 +98,118 @@ onclick="verifyPhyID(inputData.value, 'IpLI9SntEMeM03xJdkjMsEJlOFF2');" /></td>
 </body>
 </html>
 
-
+<!-- Loads necessary javascript files. -->
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 
-<script src="FirebaseConfig.js"> </script>
-
-<script src="LibraryCommon.js"> </script>
-<script src="PageMaker.js"> </script>
-<script src="PatientSearcher.js"> </script>
-<script src="PatientActivity.js"> </script>
+<script src="FirebaseConfig.js"> </script> <!-- Used to configure communication with the firebase database -->
+<script src="LibraryCommon.js"> </script> <!-- Includes common function such as removing duplicates for arrays -->
+<script src="PatientSearcher.js"> </script> <!-- Contains functions for patient list searches -->
+<script src="PatientActivity.js"> </script> <!-- Contains functions for patient activity searches -->
 
 
 <script>
+ 
+var phyID =  'IpLI9SntEMeM03xJdkjMsEJlOFF2'; 
+//var patientID = patientID.value;
+//var patientID = '7Owbl8fsHBMVeiKvUJxsilntE9C3'; 
+var patID = '';
+var status = 0;
 
 function updateInfo()
 {
-	//window.alert('is this running');
-	
 	setTimeout(function(){GetLoginStatus(updatePanel);}, 1500);
 }
 
-
+//This function is used to update teh front paned uid object
 function updatePanel(email, id)
 {
   	setTimeout(function(){
   	document.getElementById("uid").value = id;}, 2000); 
 	
-}
-
-
-function getPatientActivity()
-{
-	//window.alert('This is a test');
-	getPatientActivityInfo('7Owbl8fsHBMVeiKvUJxsilntE9C3', 'Step Count'); 
-		
 }; 
+
+//This function is used to the get the patient activity. 
+function getPatientActivity()
+{	
+	
+	//Attains the patientID information and activityType from the user input on the front panel
+	setTimeout(function(){
+  	patID = document.getElementById("patientID").value;
+  	activity = document.getElementById("activityType").value;
+  	}, 500); 
+
+	//Calls eh verifyPhyID function to determine if the patient has listed the physicain as their doctor
+	setTimeout(function(){
+		verifyPhyID(patID, phyID);}, 1000); 
+	
+	
+	//Calls the getPatientActivity function based on the 'status' value
+	setTimeout(function()
+	{	//If the patient hase selected the physician, this will call the 
+		//getPatientActivity function to retrieve data. 
+		if (status == 1)
+		{getPatientActivityInfo(patID, activity);} 
+		else
+		{/*window.alert('Data not available for this patient');*/} 
+	},	2000);
+	
+}; 
+
+function getPaientData()
+{	
+	//Attains the patientID information and activityType from the user input on the front panel
+	setTimeout(function(){
+  	patID = document.getElementById("patientID").value;
+  	activity = document.getElementById("activityType").value;
+  	}, 500); 
+
+	//Calls eh verifyPhyID function to determine if the patient has listed the physicain as their
+	//doctor
+	setTimeout(function(){
+		verifyPhyID(patID, phyID);}, 1000); 
+	
+	
+	//Calls the getPatientActivity function based on the 'status' value
+	setTimeout(function()
+	{	//If the patient hase selected the physician, this will call the 
+		//getPatientInfo function to retrieve data. 
+		if (status == 1)
+		{getPatientInfo(patID);} 
+		else
+		{/*window.alert('Data not available for this patient');*/} 
+	},	2000);
+	
+}
 
 function getPatientList()
 {
+	
 	//window.alert('This is a test');
-	patientSearch('IpLI9SntEMeM03xJdkjMsEJlOFF2', updateDisplayTable); 	
+	patientSearch(phyID, updateDisplayTable); 	
 }; 
 
 function verifyPhyID(patientID, phyID)
 {
-	//Find all patients with the specified patient ID		
+	//Verifies that the specified patient has selected to current Physician
+	//if this is true it calls the getPatientInfo function
+	//If this this return and alert message and exits
 		var patPhyID = ' ';	
 	
 		var ref = firebase.database().ref("Patient/"+patientID+"/physician id");
 		ref.once("value", function(snapshot)  
 			 {	//window.alert('hi');	
 			   	patPhyID = snapshot.val();
-			    //window.alert(patPhyID); //Inserts the patient information into the array
-			   //patientList.push([data.key, nameFirst +' '+ nameLast]); //Inserts the patient information into the array
-			   //window.alert(patientList);
-			})
+			 })
 			.then(function()
 				{//window.alert('hi3');
-					if (phyID == patPhyID)
-					{getPatientInfo(patientID);}
-					else
-					{window.alert('This patient has not listed you as a physician');}
+					if (phyID == patPhyID){
+						status = 1;}
+					
+					else{
+						window.alert('This patient has not listed you as a physician');
+						status = 0;}
 				});
-		//return nameFirst, nameLast, nameMiddle, city, gender, insurance, mobileNum, officeNum, state, zip, email;
-		//Remove duplicates from the array.
-		//.then(function(){callback(patientList);});
-		
+	return status; 
 }; 
 
 
@@ -184,7 +237,7 @@ function updateDisplayTable(array)
 	  var textNode2 = document.createTextNode(array[i][0]);
 	  cellRight.appendChild(textNode2);	 
 	}
-	  window.alert(array); 
+	 //window.alert(array); //This previously printed the array as an alert message.   
 }; 
 
 

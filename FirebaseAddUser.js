@@ -1,5 +1,20 @@
 
-// This Javascript file is used to add an new user to the firebase database. 
+/* The code is based on a class project at Rutgers University. 
+
+Project Title: RU Healthy?
+Class:  Software Engineering I   
+Course No: ECE567
+Professor: Ivan Marsic
+Semester: Fall 2017
+Website code developer: Tina Drew
+Written by Tina Drew
+Debugged by Tina Drew
+Tested by Tina Drew
+
+Group Participants: Aymen F Al-Saadi, Tahiya Chowdhury, Tina L Drew, 
+George Koubbe, Himabindu Paruchuri and Ramya Tadepalli 
+
+This Javascript file is used to add an new user to the firebase database.  */
 
 //The function below adds users to the database. 
 function addUser(email, userID) 
