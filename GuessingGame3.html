@@ -1,0 +1,205 @@
+<!-- The code is based on the a class project at Rutgers University. 
+
+Project Title: RU Healthy?
+Class:  Software Engineering I   
+Course No: ECE568
+Professor: Zhou
+Semester: Fall 2017
+Website code developers: Tina Drew
+Written by Tina Drew
+Debugged by Tina Drew
+Tested by Tina Drew
+
+Group Participants: Aymen F Al-Saadi, Tahiya Chowdhury, Tina L Drew, 
+George Koubbe, Himabindu Paruchuri and Ramya Tadepalli 
+
+This page serves as user portal and allows the user to navigate to the rest of the
+RU Healthy webpages-->
+
+<!-- The code below creates a menu navigation bar at the top of the page and was modified from.
+https://www.w3schools.com/css/tryit.asp?filename=trycss_float5-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #3385ff;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+</style>
+</head>
+<body bgcolor = "#ffffff">
+   <title>Guessing Game3</title>
+<ul>
+
+  <!-- <li><a href="Home.html" ><img src="HeartNStet.jpg" alt="Smiley face" height = "100" width = "100></a></li> -->  
+  <li><a href="http://206.189.179.16:5005/realtimeportal/" >Real-Time Portal</a></li>
+  <li><a href="http://206.189.179.16:5005/historicalportal/">Historical Portal</a></li>
+  <li><a href="http://206.189.179.16:5005/stockpriceday/">Daily Stock Prices</a></li>
+  <li><a href="http://206.189.179.16:5005/stockpriceminute/">Minute Stock Prices</a></li>
+  <li><a href="http://206.189.179.16:5005/user/">Users</a></li>
+  <li><a href="http://206.189.179.16:5005/login/">Logout</a></li>
+</ul>
+<!-- End of modified code -->
+
+ <tr><br><br><center><td><input type = "button" value = "New Plot"   
+ height = 180 width = "250"  onclick = "getData()"/></td><br><br>
+ 
+ <td><b>MY PREDICTION </b><br><br><input type = "button" value = "Increase" id = up   
+ height = 180 width = "250"  onclick = "getGuess(1)"/></td>
+ <td><input type = "button" value = "Decrease" id = down   
+ height = 180 width = "250"  onclick = "getGuess(0)"/></td></center>
+ 
+ <br><br>
+ <center><td><b>SCORE: </b><td><input type = "value" value = 0 id = myScore   
+ height = 100 width = "50"  onclick = "getGuess(0)"/></td></center>
+
+</tr>
+
+  <tr><div id="tester" style="width:1000px;height:450px;"></div>
+  <div id="chartContainer" style="height: 300px; width: 100%;">
+  </div></tr>
+</body>
+<br><br><br>
+</html>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script type="text/javascript">
+  
+  	var yData = []
+  	var xData = []
+  	var yVal = 0.0
+  	var score = 0
+  	var stock = ''
+  	
+	TESTER = document.getElementById('tester');
+	
+	Plotly.plot( TESTER, [{
+	x: xData,
+	y: yData}], {
+	margin: { t: 0 } } );
+	
+	
+	//used to get the format data arrays
+	function getData()
+	{
+		//https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array
+		var ind = Math.floor(Math.random() * stockPrices.length);
+	 
+		setTimeout(function(){
+			yData = stockPrices[ind];
+			stock = stockSymbol[ind];
+		}, 100);
+
+	 	//javascript is asynchronous by design.  So I have placed the set timeout function 
+	 	//to control when funcitons are executed
+		setTimeout(function(){
+			yVal = yData[yData.length-1];
+			yData.pop()
+			//alert(yVal)
+		}, 200);
+
+		setTimeout(function(){
+			yData.pop()
+			//alert(yVal)
+		}, 250);
+	 	
+		setTimeout(function(){
+			
+			xData = []
+			for (var i = 1; i <= yData.length; i++) {
+				   xData.push(i-1);
+				}
+		}, 300);
+		
+		setTimeout(function(){
+		plotInfo();
+		//alert('Plotting Data')
+		}, 500);
+			
+	} 
+	
+	//Used to plat the data
+	function plotInfo()
+	{
+		//Plotly.purge(TESTER);
+		
+		setTimeout(function(){
+
+			Plotly.newPlot( TESTER, [{
+			title: stock,
+			x: xData,
+			y: yData}], {
+			margin: { t: 0 } } );
+		}, 200);
+	}
+	
+	//Set of sample stock prices to pull from in order to play the game
+	var stockSymbol = [
+		['GOOG'],
+		['Test'],
+		['Test2']
+	]
+	
+	var stockPrices = [
+		[1029.61, 1040.04, 1021.18, 1019.98, 1067.45, 1072.96, 1087.70, 1072.08, 1074.16, 1037.98, 1029.27, 1032.51, 1,019.97,
+		1031.64, 1015.45, 1007.04, 1027.81, 1025.14, 1013.41, 1006.47, 1031.79, 1004.56, 1005.10],
+		[34, 56, 30.4, 10.5],
+		[1136, 1115.32, 1089.19, 1099.22, 1075.14, 1053.08, 1107.87, 1123.03, 1141.24, 1127.8, 	1112.64, 1116.19, 1106.47, 1090.57]
+	]
+
+	function getGuess(guess)
+	{	
+		var sc = 0; 
+		if (guess == 1){
+			if (yData[yData.length-1] < yVal){
+				score = score + 100;
+				//alert('Cond 1');
+			}
+			else {
+				score = score - 100;
+				//alert('Cond 2')
+			}
+			setTimeout(function(){
+				document.getElementById("myScore").value = score;
+			}, 300);	
+		}
+		else {
+			if (yData[yData.length-1] > yVal){
+				score = score + 100;
+				//alert('Cond 1');
+			}
+			else {
+				score = score - 100;
+				//alert('Cond 2')
+			}
+			setTimeout(function(){
+				document.getElementById("myScore").value = score;
+			}, 300);	
+		}
+	}
+	
+	
+	
+</script>
